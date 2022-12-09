@@ -11,7 +11,7 @@ public class AnimatedGif extends JComponent implements ActionListener {
 
     private final Timer timer;
     public int x = 0;
-    public int y = -20;
+    public int y = 0;
     private BufferedImage image;
 
     public AnimatedGif(int delay) {
@@ -39,12 +39,19 @@ public class AnimatedGif extends JComponent implements ActionListener {
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        x++;
-        y++;
-        if (x >= 470 && y >= 450) {
-            x = 0;
-            y = -20;
+        if(x < 403 && y == 0) {
+            x++;
         }
+        if (x>= 403 && y < 423) {
+            y++;
+        }
+        if (y >= 422) {
+            x--;
+        }
+        if (y <= 422 && x == 0) {
+            y--;
+        }
+
         g2d.drawImage(image, x, y, null);
     }
 
